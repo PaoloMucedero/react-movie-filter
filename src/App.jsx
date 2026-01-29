@@ -11,17 +11,26 @@ function App() {
   const [filteredMovies, setFilteredMovies] = useState(movieArray);
 
   // useEffect che gestisce il filtro
-  useEffect(() => {
-    // se non è selezionato nessun genere
-    if (selectedGenre === "") {
-      setFilteredMovies(movieArray);
-    } else {
-      const filtered = movieArray.filter(
-        movie => movie.genre === selectedGenre
-      );
-      setFilteredMovies(filtered);
-    }
-  }, [selectedGenre]);
+useEffect(() => {
+
+  // VERSIONE "ESTESA" (più leggibile, usata per capire la logica)
+  // if (selectedGenre === "") {
+  //   setFilteredMovies(movieArray);
+  // } else {
+  //   const filtered = movieArray.filter(
+  //     movie => movie.genre === selectedGenre
+  //   );
+  //   setFilteredMovies(filtered);
+  // }
+
+  // VERSIONE "COMPATTA" (ternario, come visto a lezione)
+  setFilteredMovies(
+    selectedGenre === ""
+      ? movieArray
+      : movieArray.filter(movie => movie.genre === selectedGenre)
+  );
+
+}, [selectedGenre]);
 
   return (
     <div>
